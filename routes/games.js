@@ -36,6 +36,20 @@ gamesRouter.get("/:id/challenges", async (req, res) => {
   }
 });
 
+// -----------------------------------------Get Solutions
+
+gamesRouter.get("/:id/solution", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const sql =
+      "SELECT Solutions.solution, Solutions.indices, Solutions.backgroundImg FROM Solutions INNER JOIN Challenges ON Challenges.id = Solutions.challengeId INNER JOIN Games ON Challenges.gamesId = Games.id Where Games.id=?";
+    const [solutions] = await db.query(sql, [id]);
+    res.status(201).json(solutions);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
 gamesRouter.get("/:id/challenges1", async (req, res) => {
   try {
     const { id } = req.params;
@@ -72,16 +86,16 @@ gamesRouter.get("/:id/challenges3", async (req, res) => {
   }
 });
 
-// gamesRouter.get("/:id/challenges4", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const sql =
-//       'SELECT * FROM Challenges WHERE Challenges.gamesId =? AND Challenges.number="4";';
-//     const [challenges] = await db.query(sql, [id]);
-//     res.status(201).json(challenges);
-//   } catch (err) {
-//     res.status(400).send(err);
-//   }
-// });
+gamesRouter.get("/:id/challenges4", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const sql =
+      'SELECT * FROM Challenges WHERE Challenges.gamesId =? AND Challenges.number="4";';
+    const [challenges] = await db.query(sql, [id]);
+    res.status(201).json(challenges);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
 
 module.exports = gamesRouter;
