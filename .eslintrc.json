@@ -1,15 +1,22 @@
 {
   "env": {
-    "browser": true,
-    "es6": true
+    "node": true,
+    "es2021": true
   },
-  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "extends": ["airbnb-base", "prettier"],
   "parserOptions": {
     "ecmaVersion": 12,
     "sourceType": "module"
   },
   "rules": {
-    "indent": ["error", 2],
-    "linebreak-style": ["error", "unix"]
+    "no-unused-vars": "off",
+    "import/no-unresolved": "off",
+    "import/prefer-default-export": "off",
+    "no-plusplus": "off",
+    "no-shadow": "off",
+    "no-param-reassign": 0,
+    "arrow-body-style": "off",
+    "eqeqeq": "off",
+    "no-underscore-dangle": ["error"]
   }
 }
